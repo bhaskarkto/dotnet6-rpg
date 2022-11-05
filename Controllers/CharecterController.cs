@@ -24,6 +24,16 @@ namespace dotnet_rpg.Controllers
             return Ok( await this.charecterService.GetCharecterById(id));
         }
 
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<ServiceResponse<List<GetCharecterDto>>>> Delete(int id)
+        {
+           var response = await this.charecterService.DeleteCharecter(id);
+            if(response.Data==null)
+            {
+                return NotFound(response); 
+            }
+            return Ok(response);
+        }
         // [HttpGet]
         // [Route("GetAll") ]
         // Or  combine both into one. 
@@ -36,6 +46,17 @@ namespace dotnet_rpg.Controllers
         public async Task<ActionResult<ServiceResponse<List<GetCharecterDto>>>> AddCharecter(AddCharecterDto newCharecter)
         {
             return Ok(await this.charecterService.AddCharecter(newCharecter));
+        }
+
+         [HttpPut]
+        public async Task<ActionResult<ServiceResponse<List<GetCharecterDto>>>> UpdateCharecter(UpdateCharecterDto updatedCharecter)
+        {
+            var response = await this.charecterService.UpdateCharecter(updatedCharecter);
+            if(response.Data==null)
+            {
+                return NotFound(response); 
+            }
+            return Ok(response);
         }
         
     }
