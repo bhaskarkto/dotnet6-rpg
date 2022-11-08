@@ -56,10 +56,14 @@ namespace dotnet_rpg.Services.CharecterService
             return response;  
         }
 
-        public async Task<ServiceResponse<List<GetCharecterDto>>> GetAllCharecters()
+        public async Task<ServiceResponse<List<GetCharecterDto>>> GetAllCharecters(int userId)
         {
             var response = new ServiceResponse<List<GetCharecterDto>>(); 
-            var dbCharecters = await _context.Charecters.ToListAsync(); 
+            var dbCharecters = await _context.Charecters                        
+                                .Where(c => c.User.Id == userId)
+                                .ToListAsync(); 
+                                // instead of just  .ToListAsync(); which returns all, we use a where clause to return only charecters that belong to the user
+
             response.Data = dbCharecters.Select(c => _mapper.Map<GetCharecterDto>(c)).ToList(); 
             return response; 
         }
