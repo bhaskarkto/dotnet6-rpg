@@ -8,3 +8,5 @@ git status
 //For Checking in one file
 git add Documentation/gitcommands_used.txt
 git commit -m"added gitcommands used file"
+git push origin master
+git status
