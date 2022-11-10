@@ -1,2 +1,10 @@
 
+//For checking in entire directory 
+git add .
+git commit -m"AdvancedRelationships with Entity Framework Core - .Net 6 Check In"
+git push origin master
 git status
+
+//For Checking in one file
+git add Documentation/gitcommands_used.txt
+git commit -m"added gitcommands used file"
